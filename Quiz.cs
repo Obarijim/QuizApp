@@ -40,11 +40,27 @@ namespace QuizApp
             }
         }
 
-        private void DisplayResults()
+        public void DisplayResults()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("");
-            Console.WriteLine($"Quiz is finishe. Your score is {_score} out of {_questions.Length}");
+            Console.WriteLine($"Quiz is finished. Your score is {_score} out of {_questions.Length}");
+
+            double percentage = (double) _score / _questions.Length;
+
+            if (percentage > 0.8)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Excellent work");
+            } else if (percentage < 0.5)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("You need to improve");
+            } else
+            {
+                Console.WriteLine("Good effort");
+            }
+            Console.ResetColor();
         }
         
         private void DisplayQuestion(Question question) 
